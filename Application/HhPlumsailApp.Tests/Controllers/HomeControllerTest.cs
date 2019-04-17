@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using HhPlumsailApp;
 using HhPlumsailApp.Controllers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HhPlumsailApp.Tests.Controllers {
 	[TestClass]

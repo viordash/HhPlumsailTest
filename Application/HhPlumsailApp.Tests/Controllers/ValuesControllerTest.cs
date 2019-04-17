@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Web.Http;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using HhPlumsailApp;
 using HhPlumsailApp.Controllers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HhPlumsailApp.Tests.Controllers {
 	[TestClass]
