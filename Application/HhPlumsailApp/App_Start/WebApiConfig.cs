@@ -1,5 +1,7 @@
 ﻿using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace HhPlumsailApp {
 	public static class WebApiConfig {
@@ -17,6 +19,10 @@ namespace HhPlumsailApp {
 				routeTemplate: "api/{controller}/{id}",
 				defaults: new { id = RouteParameter.Optional }
 			);
+
+			config.Formatters.JsonFormatter.SerializerSettings.Formatting = Formatting.Indented;
+			config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+			config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 		}
 	}
 }
