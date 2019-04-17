@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HhPlumsailApp", "HhPlumsailApp\HhPlumsailApp.csproj", "{E32E7993-A72F-4F0B-A0C4-9D1DBBB662F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HhPlumsailApp.Tests", "HhPlumsailApp.Tests\HhPlumsailApp.Tests.csproj", "{EE1AD68A-6225-43D7-8298-14378F0D60E0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E32E7993-A72F-4F0B-A0C4-9D1DBBB662F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E32E7993-A72F-4F0B-A0C4-9D1DBBB662F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E32E7993-A72F-4F0B-A0C4-9D1DBBB662F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E32E7993-A72F-4F0B-A0C4-9D1DBBB662F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE1AD68A-6225-43D7-8298-14378F0D60E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE1AD68A-6225-43D7-8298-14378F0D60E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE1AD68A-6225-43D7-8298-14378F0D60E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE1AD68A-6225-43D7-8298-14378F0D60E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FDAEC94B-967E-43CE-AF82-FB5A9ECE842D}
+	EndGlobalSection
+EndGlobal

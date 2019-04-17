@@ -1,0 +1,6 @@
+namespace HhPlumsailApp.Areas.HelpPage.ModelDescriptions
+{
+    public class SimpleTypeModelDescription : ModelDescription
+    {
+    }
+}
