@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using GuardNet;
 using HhPlumsailApp.DataAccess;
 using HhPlumsailApp.Models;
@@ -28,11 +29,6 @@ namespace HhPlumsailApp.Services {
 
 			var result = await userManager.CreateAsync(user, userModel.Password);
 			return result;
-		}
-
-		public void Dispose() {
-			applicationDbContext.Dispose();
-			userManager.Dispose();
 		}
 	}
 }

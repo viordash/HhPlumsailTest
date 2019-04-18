@@ -36,6 +36,7 @@ namespace HhPlumsailApp {
 		}
 
 		protected virtual void Dispose(bool disposing) {
+			PerRequestLifetimeManager.FreeObjects();
 			container.Dispose();
 		}
 	}

@@ -35,15 +35,7 @@ namespace HhPlumsailApp.Controllers {
 			return Ok();
 		}
 
-		//protected override void Dispose(bool disposing) {
-		//	if(disposing) {
-		//		authenticationService.Dispose();
-		//	}
 
-		//	base.Dispose(disposing);
-		//}
-
-	
 
 		//private const string LocalLoginProvider = "Local";
 		//private ApplicationUserManager _userManager;

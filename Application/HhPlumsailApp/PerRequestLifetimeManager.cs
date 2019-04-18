@@ -32,8 +32,9 @@ namespace HhPlumsailApp {
 
 		public override object GetValue(ILifetimeContainer container = null) {
 			object value;
-			if(ObjectDictionary.TryGetValue(objectKey, out value))
+			if(ObjectDictionary.TryGetValue(objectKey, out value)) {
 				return value;
+			}
 			return null;
 		}
 
