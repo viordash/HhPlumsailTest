@@ -26,7 +26,7 @@ namespace HhPlumsailApp {
 				new InjectionFactory(c => c.Resolve<IDbContextFactory>().CreateDbContext()));
 
 			container.RegisterType<IOAuthAuthorizationServerProvider, ApplicationOAuthProvider>(new PerRequestLifetimeManager());
-			container.RegisterType<IAuthenticationService, AuthenticationService>(new PerRequestLifetimeManager());
+			container.RegisterType<IUserManagerService, UserManagerService>(new PerRequestLifetimeManager());
 
 
 			var serviceLocator = new UnityServiceLocator(container);

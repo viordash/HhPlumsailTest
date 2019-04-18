@@ -5,15 +5,15 @@ using Microsoft.Owin.Security.OAuth;
 
 namespace HhPlumsailApp.Providers {
 	public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider {
-		readonly IAuthenticationService authenticationService;
+		readonly IUserManagerService userManagerService;
 
-		public ApplicationOAuthProvider(IAuthenticationService authenticationService) {
-			Guard.NotNull(authenticationService, nameof(authenticationService));
-			this.authenticationService = authenticationService;
+		public ApplicationOAuthProvider(IUserManagerService userManagerService) {
+			Guard.NotNull(userManagerService, nameof(userManagerService));
+			this.userManagerService = userManagerService;
 		}
 
 		public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context) {
-			var user = await authenticationService.FindUser(context.UserName, context.Password);
+			var user = await userManagerService.FindUser(context.UserName, context.Password);
 			if(user == null) {
 				context.SetError("invalid_grant", "The user name or password is incorrect.");
 				return;

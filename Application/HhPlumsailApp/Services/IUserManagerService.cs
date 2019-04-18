@@ -4,7 +4,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace HhPlumsailApp.Services {
-	public interface IAuthenticationService {
+	public interface IUserManagerService {
 		Task<IdentityResult> RegisterUser(UserModel userModel);
 		Task<IdentityUser> FindUser(string userName, string password);
 	}

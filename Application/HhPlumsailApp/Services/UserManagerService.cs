@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using GuardNet;
 using HhPlumsailApp.DataAccess;
 using HhPlumsailApp.Models;
@@ -7,14 +6,23 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace HhPlumsailApp.Services {
-	public class AuthenticationService : IAuthenticationService {
+	public class UserManagerService : IUserManagerService {
 		readonly ApplicationDbContext applicationDbContext;
 		readonly UserManager<IdentityUser> userManager;
 
-		public AuthenticationService(ApplicationDbContext applicationDbContext) {
+		static PasswordValidator passwordValidator = new PasswordValidator {
+			RequiredLength = UserModel.PasswordMinimumLength,
+			RequireNonLetterOrDigit = false,
+			RequireDigit = false,
+			RequireLowercase = false,
+			RequireUppercase = false,
+		};
+
+		public UserManagerService(ApplicationDbContext applicationDbContext) {
 			Guard.NotNull(applicationDbContext, nameof(applicationDbContext));
 			this.applicationDbContext = applicationDbContext;
-			this.userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(applicationDbContext));
+			userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(applicationDbContext));
+			this.userManager.PasswordValidator = passwordValidator;
 		}
 
 		public async Task<IdentityUser> FindUser(string userName, string password) {

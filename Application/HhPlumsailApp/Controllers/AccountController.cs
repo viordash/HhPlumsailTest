@@ -9,11 +9,11 @@ namespace HhPlumsailApp.Controllers {
 	[Authorize]
 	[RoutePrefix("api/Account")]
 	public class AccountController : ApiController {
-		readonly IAuthenticationService authenticationService;
+		readonly IUserManagerService userManagerService;
 
-		public AccountController(IAuthenticationService authenticationService) {
-			Guard.NotNull(authenticationService, nameof(authenticationService));
-			this.authenticationService = authenticationService;
+		public AccountController(IUserManagerService userManagerService) {
+			Guard.NotNull(userManagerService, nameof(userManagerService));
+			this.userManagerService = userManagerService;
 		}
 
 		// POST api/Account/Register
@@ -24,7 +24,7 @@ namespace HhPlumsailApp.Controllers {
 				return BadRequest(ModelState);
 			}
 
-			IdentityResult result = await authenticationService.RegisterUser(userModel);
+			IdentityResult result = await userManagerService.RegisterUser(userModel);
 
 			IHttpActionResult errorResult = GetErrorResult(result);
 
