@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
 using CommonServiceLocator;
 using HhPlumsailApp.DataAccess;
 using HhPlumsailApp.Providers;
@@ -10,10 +11,8 @@ using Unity.Lifetime;
 using Unity.ServiceLocation;
 
 namespace HhPlumsailApp {
-	public class Bootstrapper {
-		static Bootstrapper() { }
-
-		public static void Initialize(HttpConfiguration config) {
+	public static class ServicesConfig {
+		public static void Register(HttpConfiguration config) {
 			var container = new UnityContainer();
 
 			container.RegisterType<IDbContextFactory>(
@@ -29,10 +28,12 @@ namespace HhPlumsailApp {
 			container.RegisterType<IUserManagerService, UserManagerService>(new PerRequestLifetimeManager());
 			container.RegisterType<UserStoreService>(new PerRequestLifetimeManager());
 
-
 			var serviceLocator = new UnityServiceLocator(container);
 			ServiceLocator.SetLocatorProvider(() => serviceLocator);
 			config.DependencyResolver = new UnityDependencyResolver(container);
+
+			config.Services.Replace(typeof(IExceptionLogger), new ErrorsHandling.ExceptionLogger());
+			config.Services.Replace(typeof(IExceptionHandler), new ErrorsHandling.ExceptionHandler());
 		}
 	}
 }

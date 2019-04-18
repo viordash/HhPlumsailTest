@@ -11,7 +11,6 @@ namespace HhPlumsailApp {
 
 		public void ConfigureAuth(IAppBuilder app) {
 			var config = GlobalConfiguration.Configuration;
-			Bootstrapper.Initialize(config);
 			app.UseWebApi(config);
 
 			var provider = config.DependencyResolver.GetService<IOAuthAuthorizationServerProvider>();
