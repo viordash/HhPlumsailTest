@@ -185,6 +185,7 @@
     <Compile Include="Services\IAuthorizationService.cs" />
     <Compile Include="Services\IUserManagerService.cs" />
     <Compile Include="Services\UserManagerService.cs" />
+    <Compile Include="Services\UserStoreService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="UnityDependencyResolver.cs" />
   </ItemGroup>

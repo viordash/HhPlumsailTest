@@ -1,14 +1,10 @@
 ﻿using System.Threading.Tasks;
-using GuardNet;
-using HhPlumsailApp.DataAccess;
 using HhPlumsailApp.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace HhPlumsailApp.Services {
-	public class UserManagerService : IUserManagerService {
-		readonly ApplicationDbContext applicationDbContext;
-		readonly UserManager<IdentityUser> userManager;
+	public class UserManagerService : UserManager<IdentityUser>, IUserManagerService {
 
 		static PasswordValidator passwordValidator = new PasswordValidator {
 			RequiredLength = UserModel.PasswordMinimumLength,
@@ -18,15 +14,12 @@ namespace HhPlumsailApp.Services {
 			RequireUppercase = false,
 		};
 
-		public UserManagerService(ApplicationDbContext applicationDbContext) {
-			Guard.NotNull(applicationDbContext, nameof(applicationDbContext));
-			this.applicationDbContext = applicationDbContext;
-			userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(applicationDbContext));
-			this.userManager.PasswordValidator = passwordValidator;
+		public UserManagerService(UserStoreService userStoreService) : base(userStoreService) {
+			PasswordValidator = passwordValidator;
 		}
 
 		public async Task<IdentityUser> FindUser(string userName, string password) {
-			var user = await userManager.FindAsync(userName, password);
+			var user = await FindAsync(userName, password);
 			return user;
 		}
 
@@ -35,7 +28,7 @@ namespace HhPlumsailApp.Services {
 				UserName = userModel.UserName
 			};
 
-			var result = await userManager.CreateAsync(user, userModel.Password);
+			var result = await CreateAsync(user, userModel.Password);
 			return result;
 		}
 	}

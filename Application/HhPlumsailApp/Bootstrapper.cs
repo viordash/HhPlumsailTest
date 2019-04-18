@@ -27,6 +27,7 @@ namespace HhPlumsailApp {
 
 			container.RegisterType<IOAuthAuthorizationServerProvider, ApplicationOAuthProvider>(new PerRequestLifetimeManager());
 			container.RegisterType<IUserManagerService, UserManagerService>(new PerRequestLifetimeManager());
+			container.RegisterType<UserStoreService>(new PerRequestLifetimeManager());
 
 
 			var serviceLocator = new UnityServiceLocator(container);
