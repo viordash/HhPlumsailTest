@@ -26,7 +26,7 @@ namespace HhPlumsailApp.Services {
 		}
 
 		public async Task<IdentityUser> FindUser(string userName, string password) {
-			IdentityUser user = await userManager.FindAsync(userName, password);
+			var user = await userManager.FindAsync(userName, password);
 			return user;
 		}
 
