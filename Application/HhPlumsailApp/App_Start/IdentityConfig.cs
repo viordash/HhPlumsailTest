@@ -1,4 +1,5 @@
-﻿using HhPlumsailApp.Models;
+﻿using HhPlumsailApp.DataAccess;
+using HhPlumsailApp.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -21,7 +22,7 @@ namespace HhPlumsailApp {
 			};
 			// Configure validation logic for passwords
 			manager.PasswordValidator = new PasswordValidator {
-				RequiredLength = 4,
+				RequiredLength = UserModel.PasswordMinimumLength,
 				RequireNonLetterOrDigit = false,
 				RequireDigit = false,
 				RequireLowercase = false,
