@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Security;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using GuardNet;
@@ -29,11 +30,8 @@ namespace HhPlumsailApp.Providers {
 
 			using(var _repo = container.Resolve<IUserManagerService>()) {
 				var user = await _repo.FindUser(context.UserName, context.Password);
-
 				if(user == null) {
-					//throw new SecurityException("The user name or password is incorrect.");
-					context.SetError("invalid_grant", "The user name or password is incorrect.");
-					return;
+					throw new SecurityException("The user name or password is incorrect.");
 				}
 			}
 			var identity = new ClaimsIdentity(context.Options.AuthenticationType);
