@@ -1,6 +1,5 @@
 ﻿using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
-using CommonServiceLocator;
 using HhPlumsailApp.DataAccess;
 using HhPlumsailApp.Providers;
 using HhPlumsailApp.Services;
@@ -8,7 +7,6 @@ using Microsoft.Owin.Security.OAuth;
 using Unity;
 using Unity.Injection;
 using Unity.Lifetime;
-using Unity.ServiceLocation;
 
 namespace HhPlumsailApp {
 	public static class ServicesConfig {
@@ -28,8 +26,6 @@ namespace HhPlumsailApp {
 			container.RegisterType<IUserManagerService, UserManagerService>(new PerRequestLifetimeManager());
 			container.RegisterType<UserStoreService>(new PerRequestLifetimeManager());
 
-			var serviceLocator = new UnityServiceLocator(container);
-			ServiceLocator.SetLocatorProvider(() => serviceLocator);
 			config.DependencyResolver = new UnityDependencyResolver(container);
 
 			config.Services.Replace(typeof(IExceptionLogger), new ErrorsHandling.ExceptionLogger());
