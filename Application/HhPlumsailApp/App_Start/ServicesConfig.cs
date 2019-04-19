@@ -22,7 +22,7 @@ namespace HhPlumsailApp {
 				new PerRequestLifetimeManager(),
 				new InjectionFactory(c => c.Resolve<IDbContextFactory>().CreateDbContext()));
 
-			container.RegisterType<IOAuthAuthorizationServerProvider, ApplicationOAuthProvider>(new PerRequestLifetimeManager());
+			container.RegisterType<IOAuthAuthorizationServerProvider, ApplicationOAuthProvider>(new ContainerControlledLifetimeManager());
 			container.RegisterType<IUserManagerService, UserManagerService>(new PerRequestLifetimeManager());
 			container.RegisterType<UserStoreService>(new PerRequestLifetimeManager());
 

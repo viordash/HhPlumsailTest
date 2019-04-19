@@ -31,5 +31,12 @@ namespace HhPlumsailApp.Services {
 			var result = await CreateAsync(user, userModel.Password);
 			return result;
 		}
+
+		protected override void Dispose(bool disposing) {
+			if(Store != null) {
+				Store.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 	}
 }

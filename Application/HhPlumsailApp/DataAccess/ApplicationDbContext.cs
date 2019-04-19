@@ -6,5 +6,9 @@ namespace HhPlumsailApp.DataAccess {
 		public ApplicationDbContext()
 			: base("DefaultConnection", throwIfV1Schema: false) {
 		}
+
+		protected override void Dispose(bool disposing) {
+			base.Dispose(disposing);
+		}
 	}
 }
