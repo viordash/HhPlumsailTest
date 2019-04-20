@@ -10,7 +10,7 @@ using Unity.Lifetime;
 
 namespace HhPlumsailApp {
 	public static class ServicesConfig {
-		public static void Register(HttpConfiguration config) {
+		public static IUnityContainer InitializeContainer() {
 			var container = new UnityContainer();
 
 			container.RegisterType<IDbContextFactory>(
@@ -25,7 +25,11 @@ namespace HhPlumsailApp {
 			container.RegisterType<IOAuthAuthorizationServerProvider, ApplicationOAuthProvider>(new ContainerControlledLifetimeManager());
 			container.RegisterType<IUserManagerService, UserManagerService>(new PerRequestLifetimeManager());
 			container.RegisterType<UserStoreService>(new PerRequestLifetimeManager());
+			return container;
+		}
 
+		public static void Register(HttpConfiguration config) {
+			var container = InitializeContainer();
 			config.DependencyResolver = new UnityDependencyResolver(container);
 
 			config.Services.Replace(typeof(IExceptionLogger), new ErrorsHandling.ExceptionLogger());
