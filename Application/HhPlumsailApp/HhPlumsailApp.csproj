@@ -205,6 +205,7 @@
     <Compile Include="UnityDependencyResolver.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AngularApp\dist\index.html" />
     <Content Include="favicon.ico" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -213,10 +214,8 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Home\Index.html" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AngularApp\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
