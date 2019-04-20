@@ -24,7 +24,6 @@ namespace HhPlumsailApp.Tests.Controllers {
 			testable.Dispose();
 		}
 
-		#region Login
 		[Test]
 		public void Register_ReturnsResultOk() {
 			userManagerServiceMock
@@ -42,6 +41,17 @@ namespace HhPlumsailApp.Tests.Controllers {
 			Assert.That(result, Is.TypeOf<Task<IHttpActionResult>>());
 			Assert.That(result.Result, Is.TypeOf<System.Web.Http.Results.OkResult>());
 		}
-		#endregion
+
+		[Test]
+		public void Register_ReturnsBadRequest() {
+			testable.ModelState.AddModelError("password", "minimal lenght");
+			var result = testable.Register(new UserModel() {
+				UserName = "test",
+				Password = "123456",
+				ConfirmPassword = "123456"
+			});
+			Assert.That(result, Is.TypeOf<Task<IHttpActionResult>>());
+			Assert.That(result.Result, Is.TypeOf<System.Web.Http.Results.InvalidModelStateResult>());
+		}
 	}
 }
