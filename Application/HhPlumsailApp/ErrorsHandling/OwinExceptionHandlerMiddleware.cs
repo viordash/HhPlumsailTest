@@ -30,7 +30,7 @@ namespace HhPlumsailApp.ErrorsHandling {
 			}
 		}
 		private void HandleException(Exception ex, IOwinContext context) {
-			ExceptionHandler.BuildResponseData(ex, out HttpStatusCode statusCode, out string errorMessage);
+			ExceptionHandler.BuildResponseData(ex, out HttpStatusCode statusCode, out object errorMessage);
 			context.Response.StatusCode = (int)statusCode;
 			context.Response.ContentType = "application/json";
 			context.Response.Write(JsonConvert.SerializeObject(new {

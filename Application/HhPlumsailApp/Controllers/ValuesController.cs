@@ -1,4 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Security.Claims;
 using System.Web.Http;
 
 namespace HhPlumsailApp.Controllers {
@@ -6,7 +9,8 @@ namespace HhPlumsailApp.Controllers {
 	public class ValuesController : ApiController {
 		// GET api/values
 		public IEnumerable<string> Get() {
-			return new string[] { "value1", "value2" };
+			var principal = Request.GetRequestContext().Principal as ClaimsPrincipal;
+			return new string[] { "value1", "value2", ClaimsPrincipal.Current.Identity.Name, User.Identity.Name };
 		}
 
 		// GET api/values/5

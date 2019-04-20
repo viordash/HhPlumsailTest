@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 using HhPlumsailApp.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -23,13 +25,13 @@ namespace HhPlumsailApp.Services {
 			return user;
 		}
 
-		public async Task<IdentityResult> RegisterUser(UserModel userModel) {
+		public async Task RegisterUser(UserModel userModel) {
 			var user = new IdentityUser {
 				UserName = userModel.UserName
 			};
 
 			var result = await CreateAsync(user, userModel.Password);
-			return result;
+			AssertResult(result);
 		}
 
 		protected override void Dispose(bool disposing) {
@@ -37,6 +39,18 @@ namespace HhPlumsailApp.Services {
 				Store.Dispose();
 			}
 			base.Dispose(disposing);
+		}
+
+		void AssertResult(IdentityResult result) {
+			if(result.Succeeded) {
+				return;
+			}
+			var exception = new ValidationException();
+
+			if(result.Errors != null && result.Errors.Count() > 0) {
+				exception.Data.Add(string.Empty, result.Errors);
+			}
+			throw exception;
 		}
 	}
 }

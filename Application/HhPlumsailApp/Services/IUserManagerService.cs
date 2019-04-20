@@ -6,7 +6,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace HhPlumsailApp.Services {
 	public interface IUserManagerService : IDisposable {
-		Task<IdentityResult> RegisterUser(UserModel userModel);
+		Task RegisterUser(UserModel userModel);
 		Task<IdentityUser> FindUser(string userName, string password);
 	}
 }

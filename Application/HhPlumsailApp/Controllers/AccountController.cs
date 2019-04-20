@@ -1,9 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 using System.Web.Http;
 using GuardNet;
+using HhPlumsailApp.Extensions;
 using HhPlumsailApp.Models;
 using HhPlumsailApp.Services;
-using Microsoft.AspNet.Identity;
 
 namespace HhPlumsailApp.Controllers {
 	[Authorize]
@@ -20,42 +21,10 @@ namespace HhPlumsailApp.Controllers {
 		[AllowAnonymous]
 		[Route("Register")]
 		public async Task<IHttpActionResult> Register(UserModel userModel) {
-			if(!ModelState.IsValid) {
-				return BadRequest(ModelState);
-			}
+			ModelState.Validate();
 
-			IdentityResult result = await userManagerService.RegisterUser(userModel);
-
-			IHttpActionResult errorResult = GetErrorResult(result);
-
-			if(errorResult != null) {
-				return errorResult;
-			}
-
+			await userManagerService.RegisterUser(userModel);
 			return Ok();
-		}
-
-		private IHttpActionResult GetErrorResult(IdentityResult result) {
-			if(result == null) {
-				return InternalServerError();
-			}
-
-			if(!result.Succeeded) {
-				if(result.Errors != null) {
-					foreach(string error in result.Errors) {
-						ModelState.AddModelError("", error);
-					}
-				}
-
-				if(ModelState.IsValid) {
-					// No ModelState errors are available to send, so just return an empty BadRequest.
-					return BadRequest();
-				}
-
-				return BadRequest(ModelState);
-			}
-
-			return null;
 		}
 	}
 }

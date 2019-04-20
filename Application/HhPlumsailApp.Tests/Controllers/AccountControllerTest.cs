@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 using System.Web.Http;
 using HhPlumsailApp.Controllers;
 using HhPlumsailApp.Models;
@@ -43,15 +44,13 @@ namespace HhPlumsailApp.Tests.Controllers {
 		}
 
 		[Test]
-		public void Register_ReturnsBadRequest() {
+		public void Register_ModelStateHasErrors_ThrowsValidationException() {
 			testable.ModelState.AddModelError("password", "minimal lenght");
-			var result = testable.Register(new UserModel() {
+			Assert.ThrowsAsync<ValidationException>(async () => await testable.Register(new UserModel() {
 				UserName = "test",
 				Password = "123456",
 				ConfirmPassword = "123456"
-			});
-			Assert.That(result, Is.TypeOf<Task<IHttpActionResult>>());
-			Assert.That(result.Result, Is.TypeOf<System.Web.Http.Results.InvalidModelStateResult>());
+			}));
 		}
 	}
 }
