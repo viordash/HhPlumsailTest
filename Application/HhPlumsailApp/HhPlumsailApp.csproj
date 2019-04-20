@@ -216,6 +216,7 @@
     <Content Include="Views\Home\Index.html" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AngularApp\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
