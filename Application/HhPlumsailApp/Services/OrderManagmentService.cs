@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using HhPlumsailApp.Exceptions;
@@ -9,7 +10,26 @@ namespace HhPlumsailApp.Services {
 		readonly List<OrderModel> internalStorage;
 
 		public OrderManagmentService() {
-			internalStorage = new List<OrderModel>();
+			internalStorage = new List<OrderModel>() {
+				new OrderModel() {
+					Id = 19,
+					Date = DateTime.Now,
+					Customer = "Customer1",
+					Status = OrderStatus.Created,
+					Prepaid = false,
+					Summ = 12.34M,
+					Description = "Description1"
+				},
+				new OrderModel() {
+					Id = 42,
+					Date = DateTime.Now,
+					Customer = "Customer2",
+					Status = OrderStatus.Created,
+					Prepaid = false,
+					Summ = 19.42M,
+					Description = "Description2"
+				}
+			};
 		}
 
 		public OrderModel Create(OrderModel order) {
@@ -33,7 +53,7 @@ namespace HhPlumsailApp.Services {
 		}
 
 		public List<OrderModel> List() {
-			return internalStorage;
+			return internalStorage.OrderBy(x => x.Id).ToList();
 		}
 
 		public OrderModel Retrieve(int orderId) {
