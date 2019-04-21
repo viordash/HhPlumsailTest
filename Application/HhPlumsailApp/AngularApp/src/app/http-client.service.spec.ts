@@ -2,11 +2,15 @@
 
 import { TestBed, async, inject } from '@angular/core/testing';
 import { HttpClientService } from './http-client.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('Service: HttpClient', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [HttpClientService]
+      providers: [HttpClientService],
+      imports: [
+        HttpClientTestingModule
+      ]
     });
   });
 

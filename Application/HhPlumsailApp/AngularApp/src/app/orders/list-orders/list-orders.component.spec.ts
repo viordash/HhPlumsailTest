@@ -4,6 +4,8 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { ListOrdersComponent } from './list-orders.component';
+import { MockHttpClientService } from 'src/app/mock-http-client.service';
+import { HttpClientService } from 'src/app/http-client.service';
 
 describe('ListOrdersComponent', () => {
   let component: ListOrdersComponent;
@@ -11,9 +13,10 @@ describe('ListOrdersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListOrdersComponent ]
+      declarations: [ListOrdersComponent],
+      providers: [{ provide: HttpClientService, useClass: MockHttpClientService }],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
