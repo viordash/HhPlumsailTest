@@ -26,6 +26,7 @@ namespace HhPlumsailApp {
 			container.RegisterType<IUserManagerService, UserManagerService>(new PerRequestLifetimeManager());
 			container.RegisterType<UserStoreService>(new PerRequestLifetimeManager());
 			container.RegisterType<IOrderManagmentService, OrderManagmentService>(new ContainerControlledLifetimeManager());
+			container.RegisterType<ICustomerManagmentService, CustomerManagmentService>(new ContainerControlledLifetimeManager());
 			return container;
 		}
 

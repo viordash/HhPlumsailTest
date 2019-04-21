@@ -180,6 +180,7 @@
     <Compile Include="App_Start\ServicesConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DataAccess\DbContextFactory.cs" />
@@ -193,6 +194,7 @@
     <Compile Include="Extensions\DependencyResolverExtensions.cs" />
     <Compile Include="Extensions\ModelStateExtensions.cs" />
     <Compile Include="DataAccess\ApplicationDbContext.cs" />
+    <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\OrderType.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -202,8 +204,10 @@
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Services\AuthorizationService.cs" />
     <Compile Include="Services\IAuthorizationService.cs" />
+    <Compile Include="Services\ICustomerManagmentService.cs" />
     <Compile Include="Services\IOrderManagmentService.cs" />
     <Compile Include="Services\IUserManagerService.cs" />
+    <Compile Include="Services\CustomerManagmentService.cs" />
     <Compile Include="Services\OrderManagmentService.cs" />
     <Compile Include="Services\UserManagerService.cs" />
     <Compile Include="Services\UserStoreService.cs" />
