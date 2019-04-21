@@ -8,7 +8,7 @@ import { OrderModel } from '../orderModel';
   styleUrls: ['./list-orders.component.scss']
 })
 export class ListOrdersComponent implements OnInit {
-  orders: OrderModel[];
+  private orders: OrderModel[];
 
   constructor(private httpClientService: HttpClientService) { }
 

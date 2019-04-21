@@ -1,20 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { HttpClientService } from 'src/app/http-client.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { OrderModel } from '../orderModel';
+import { CustomerModel } from 'src/app/customers/CustomerModel';
 
 @Component({
 	selector: 'app-edit-order',
 	templateUrl: './edit-order.component.html',
 	styleUrls: ['./edit-order.component.scss']
 })
-export class EditOrderComponent {
+export class EditOrderComponent implements OnInit {
 	private id?: number;
 	private subscription: Subscription;
 	private order: OrderModel;
+	private customers: CustomerModel[];
 
 	private get isNew(): boolean {
 		return !!!this.id;
@@ -33,6 +35,13 @@ export class EditOrderComponent {
 			}
 		});
 
+	}
+
+	ngOnInit() {
+		this.httpClientService.getCustomers()
+			.subscribe(result => {
+				this.customers = result;
+			});
 	}
 
 	saveOrder() {

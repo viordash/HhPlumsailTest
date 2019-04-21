@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { OrderModel } from './orders/orderModel';
 import { Observable, Subject } from 'rxjs';
+import { CustomerModel } from './customers/CustomerModel';
 
 @Injectable({
 	providedIn: 'root'
@@ -47,6 +48,18 @@ export class HttpClientService {
 	public saveOrder(orderId: number, order: OrderModel): Observable<OrderModel> {
 		var subject = new Subject<OrderModel>()
 		this.http.put<OrderModel>(this.baseUrl + 'api/Orders/' + orderId, order)
+			.subscribe(result => {
+				subject.next(result);
+			}, error => {
+				console.error(error);
+			});
+		return subject.asObservable();
+	}
+
+
+	public getCustomers(): Observable<CustomerModel[]> {
+		var subject = new Subject<CustomerModel[]>()
+		this.http.get<CustomerModel[]>(this.baseUrl + 'api/Customers')
 			.subscribe(result => {
 				subject.next(result);
 			}, error => {
