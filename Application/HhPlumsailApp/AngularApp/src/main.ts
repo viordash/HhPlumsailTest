@@ -4,17 +4,18 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
-export function getBaseUrl() {
-  return document.getElementsByTagName('base')[0].href;
-}
-
-const providers = [
-  { provide: 'BASE_URL', useFactory: getBaseUrl, deps: [] }
-];
+let _getBaseUrl : ()=> string;
 
 if (environment.production) {
   enableProdMode();
+  _getBaseUrl = () => document.getElementsByTagName('base')[0].href;
+} else {
+  _getBaseUrl = () => 'http://localhost:4716/';
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+const providers = [
+  { provide: 'BASE_URL', useFactory: _getBaseUrl, deps: [] }
+];
+
+platformBrowserDynamic(providers).bootstrapModule(AppModule)
   .catch(err => console.error(err));
