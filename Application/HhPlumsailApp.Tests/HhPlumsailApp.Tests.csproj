@@ -138,10 +138,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\HttpContextFixture.cs" />
+    <Compile Include="Controllers\OrdersControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\AccountControllerTest.cs" />
     <Compile Include="Controllers\ValuesControllerTest.cs" />
     <Compile Include="ServicesConfigTest.cs" />
+    <Compile Include="Services\OrderManagmentServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
