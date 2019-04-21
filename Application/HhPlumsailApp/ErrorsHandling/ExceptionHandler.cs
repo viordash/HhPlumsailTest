@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http.ExceptionHandling;
 using System.Web.Http.Results;
+using HhPlumsailApp.Exceptions;
 
 namespace HhPlumsailApp.ErrorsHandling {
 	public class ExceptionHandler : IExceptionHandler {
@@ -32,6 +33,9 @@ namespace HhPlumsailApp.ErrorsHandling {
 				} else {
 					errorMessage = exception.Data;
 				}
+			} else if(exception is PsException) {
+				statusCode = HttpStatusCode.BadRequest;
+				errorMessage = exception.GetBaseException().Message;
 			} else {
 				statusCode = HttpStatusCode.BadRequest;
 				errorMessage = exception.GetBaseException().Message;
