@@ -5,20 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { RouterModule } from '@angular/router';
+import { EditOrderComponent } from './orders/edit-order/edit-order.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       SignupComponent,
-      NavMenuComponent
+      NavMenuComponent,
+      EditOrderComponent
    ],
    imports: [
       BrowserModule,
-      AppRoutingModule,
-      RouterModule.forRoot([
-         { path: 'signup', component: SignupComponent },
-       ])
+      AppRoutingModule
    ],
    providers: [],
    bootstrap: [
