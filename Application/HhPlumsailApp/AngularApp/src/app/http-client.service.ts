@@ -22,11 +22,36 @@ export class HttpClientService {
 		return subject.asObservable();
 	}
 
-	// getOrders(): Observable<OrderModel[]> {
-	// 	return this.http.get<OrderModel[]>(this.baseUrl + 'api/Orders')
-	// 		.subscribe(result => {
-	// 			return result;
-	// 		}, error => console.error(error));
-	// }
+	public getOrder(orderId: number): Observable<OrderModel> {
+		var subject = new Subject<OrderModel>()
+		this.http.get<OrderModel>(this.baseUrl + 'api/Orders/' + orderId)
+			.subscribe(result => {
+				subject.next(result);
+			}, error => {
+				console.error(error);
+			});
+		return subject.asObservable();
+	}
 
+	public createOrder(order: OrderModel): Observable<OrderModel> {
+		var subject = new Subject<OrderModel>()
+		this.http.post<OrderModel>(this.baseUrl + 'api/Orders', order)
+			.subscribe(result => {
+				subject.next(result);
+			}, error => {
+				console.error(error);
+			});
+		return subject.asObservable();
+	}
+
+	public saveOrder(orderId: number, order: OrderModel): Observable<OrderModel> {
+		var subject = new Subject<OrderModel>()
+		this.http.put<OrderModel>(this.baseUrl + 'api/Orders/' + orderId, order)
+			.subscribe(result => {
+				subject.next(result);
+			}, error => {
+				console.error(error);
+			});
+		return subject.asObservable();
+	}
 }
