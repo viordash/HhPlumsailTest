@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Plumsail. A programming task for candidates for developer JavaScript, C#';
+  title = 'A programming task for candidates for developer JavaScript, C#';
 }
