@@ -26,7 +26,7 @@ export class EditOrderComponent implements OnInit {
 	constructor(private httpClientService: HttpClientService, public activeModal: NgbActiveModal, private router: Router) { }
 
 	ngOnInit() {
-		if (this.orderId) {
+		if (this.orderId != null) {
 			this.httpClientService.getOrder(this.orderId)
 				.subscribe(result => {
 					this.order = result;
