@@ -6,6 +6,7 @@ import { DebugElement } from '@angular/core';
 import { ListOrdersComponent } from './list-orders.component';
 import { MockHttpClientService } from 'src/app/services/mock-http-client.service';
 import { HttpClientService } from 'src/app/services/http-client.service';
+import { OrderStatusPipe } from 'src/app/pipes/order-status.pipe';
 
 describe('ListOrdersComponent', () => {
   let component: ListOrdersComponent;
@@ -13,7 +14,7 @@ describe('ListOrdersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ListOrdersComponent],
+      declarations: [ListOrdersComponent, OrderStatusPipe],
       providers: [{ provide: HttpClientService, useClass: MockHttpClientService }],
     })
       .compileComponents();

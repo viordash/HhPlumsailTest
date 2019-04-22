@@ -2,22 +2,27 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { EditOrderComponent } from './orders/edit-order/edit-order.component';
-import { ListOrdersComponent } from './orders/list-orders/list-orders.component';
-import { HttpClientModule } from '@angular/common/http/src/module';
-import { HttpClientService } from './http-client.service';
+import { HttpClientService } from './services/http-client.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OrdersModule } from './orders/orders.module';
+import { SignupComponent } from './signup/signup.component';
+import { FormsModule } from '@angular/forms';
+import { EditorsModule } from './editors/editors.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        FormsModule,
+        NgbModule,
+        OrdersModule,
+        EditorsModule
       ],
       declarations: [
         AppComponent,
-        NavMenuComponent,
-        EditOrderComponent,
-        ListOrdersComponent
+        SignupComponent,
+        NavMenuComponent
       ],
       providers: [HttpClientService],
     }).compileComponents();
