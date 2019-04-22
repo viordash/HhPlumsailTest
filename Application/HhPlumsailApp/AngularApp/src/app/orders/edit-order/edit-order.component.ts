@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { HttpClientService } from 'src/app/http-client.service';
+import { HttpClientService } from 'src/app/services/http-client.service';
 import { Router } from '@angular/router';
 import { OrderModel } from '../orderModel';
 import { CustomerModel } from 'src/app/customers/CustomerModel';

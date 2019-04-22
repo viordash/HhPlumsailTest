@@ -4,8 +4,8 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { ListOrdersComponent } from './list-orders.component';
-import { MockHttpClientService } from 'src/app/mock-http-client.service';
-import { HttpClientService } from 'src/app/http-client.service';
+import { MockHttpClientService } from 'src/app/services/mock-http-client.service';
+import { HttpClientService } from 'src/app/services/http-client.service';
 
 describe('ListOrdersComponent', () => {
   let component: ListOrdersComponent;

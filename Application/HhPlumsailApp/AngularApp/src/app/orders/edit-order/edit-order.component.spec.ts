@@ -4,8 +4,8 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { EditOrderComponent } from './edit-order.component';
-import { HttpClientService } from 'src/app/http-client.service';
-import { MockHttpClientService } from 'src/app/mock-http-client.service';
+import { HttpClientService } from 'src/app/services/http-client.service';
+import { MockHttpClientService } from 'src/app/services/mock-http-client.service';
 
 describe('EditOrderComponent', () => {
   let component: EditOrderComponent;
