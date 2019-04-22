@@ -13,7 +13,7 @@
             <th>Prepaid</th>
             <th>Summ</th>
             <th>Description</th>
-            <th><button class="btn btn-link" [routerLink]="['order']">New</button></th>
+            <th><button class="btn btn-link" (click)="editItem(null)">New</button></th>
         </tr>
     </thead>
     <tbody>
@@ -25,7 +25,7 @@
             <td>{{order?.prepaid}}</td>
             <td>{{order?.summ}}</td>
             <td>{{order?.description}}</td>
-            <td><button class="btn btn-link" [routerLink]="['order', order?.id]">Edit</button></td>
+            <td><button class="btn btn-link" (click)="editItem(order?.id)">Edit</button></td>
         </tr>
     </tbody>
 </table>
