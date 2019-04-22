@@ -4,42 +4,47 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
+<div class="edit-order-modal">
+  <p *ngIf="!order || !customers"><em>Loading...</em></p>
+  <form #orderForm="ngForm" class="ng-pristine ng-untouched ng-valid" novalidate *ngIf="order && customers">
+    <div class="col-xs-8">
+      <div class="form-group">
+        <label>Date</label>
+        <ngbd-datepicker-popup [(selectedDate)]="order.date"></ngbd-datepicker-popup>
+      </div>
 
-<p *ngIf="!order || !customers"><em>Loading...</em></p>
-<form #orderForm="ngForm" class="ng-pristine ng-untouched ng-valid" novalidate *ngIf="order && customers">
-  <div class="col-xs-8">
-    <div class="form-group">
-      <label>Date</label>
-      <ngbd-datepicker-popup [(selectedDate)]="order.date"></ngbd-datepicker-popup>
-    </div>
+      <div class="form-group">
+        <label>Customer</label>
+        <select class="form-control" name="customer" [(ngModel)]="order.customer">
+          <option *ngFor="let customer of customers" [value]="customer.name">
+            {{customer.name}}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Status</label>
+        <input type="number" class="form-control" name="status" [(ngModel)]="order.status" />
+      </div>
 
-    <div class="form-group">
-      <label>Customer</label>
-      <select class="form-control" name="customer" [(ngModel)]="order.customer">
-        <option *ngFor="let customer of customers" [value]="customer.name">
-          {{customer.name}}
-        </option>
-      </select>
+      <div class="form-group">
+        <label class="label-prepaid" ngbButtonLabel> Prepaid
+          <input class="btn-prepaid" type="checkbox" ngbButton name="prepaid" [(ngModel)]="order.prepaid">
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>Summ</label>
+        <input type="number" class="form-control" name="summ" [(ngModel)]="order.summ" />
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <input type="text" class="form-control" name="description" [(ngModel)]="order.description" />
+      </div>
     </div>
-    <div class="form-group">
-      <label>Status</label>
-      <input type="number" class="form-control" name="status" [(ngModel)]="order.status" />
+    <div class="modal-footer">
+      <button [disabled]="orderForm.invalid" type="button" class="btn btn-outline-primary"
+        (click)="saveOrder()">Save</button>
+      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Close</button>
     </div>
-    <div class="form-row">
-      <label>Prepaid</label>
-      <input type="checkbox" class="form-control" name="prepaid" [(ngModel)]="order.prepaid" />
-    </div>
-    <div class="form-group">
-      <label>Summ</label>
-      <input type="number" class="form-control" name="summ" [(ngModel)]="order.summ" />
-    </div>
-    <div class="form-group">
-      <label>Description</label>
-      <input type="text" class="form-control" name="description" [(ngModel)]="order.description" />
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button [disabled]="orderForm.invalid" type="button" class="btn btn-outline-primary" (click)="saveOrder()">Save</button>
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Close</button>
-  </div> 
-</form>
+  </form>
+</div>

@@ -5,6 +5,15 @@ input.ng-touched.ng-valid {
   border: solid green 2px;
 }
 
-div.form-save-button {
-  text-align: right !important;
+div.edit-order-modal{
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+div.form-group label{
+  font-weight: bold;
+}
+
+input.btn-prepaid{
+  margin-left: 10px;
 }
