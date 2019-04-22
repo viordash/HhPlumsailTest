@@ -7,3 +7,9 @@ export interface OrderModel {
     summ: number;
     description: string;
 }
+
+export enum OrderStatus {
+    Created = 0,
+    InProcess,
+    Closed
+}

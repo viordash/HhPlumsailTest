@@ -2,7 +2,7 @@
 
 namespace HhPlumsailApp.Models {
 	public enum OrderStatus {
-		Created,
+		Created = 0,
 		InProcess,
 		Closed
 	}

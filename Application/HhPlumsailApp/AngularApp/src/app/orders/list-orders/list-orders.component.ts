@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientService } from 'src/app/http-client.service';
 import { OrderModel } from '../orderModel';
-import { NgbModal, NgbModalConfig, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { EditOrderComponent } from '../edit-order/edit-order.component';
 
 @Component({

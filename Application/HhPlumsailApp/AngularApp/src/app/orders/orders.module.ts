@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from '../app-routing.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { EditOrderComponent } from './edit-order/edit-order.component';
 import { ListOrdersComponent } from './list-orders/list-orders.component';
 import { EditorsModule } from '../editors/editors.module';
 import { HttpClientService } from '../http-client.service';
+import { OrderStatusPipe } from '../pipes/order-status.pipe';
 
 
 @NgModule({
@@ -17,12 +19,14 @@ import { HttpClientService } from '../http-client.service';
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        EditorsModule
+        EditorsModule,
+        NgbModule
     ],
     providers: [HttpClientService],
     declarations: [
         EditOrderComponent,
-        ListOrdersComponent],
+        ListOrdersComponent,
+        OrderStatusPipe],
     exports: [
         EditOrderComponent,
         ListOrdersComponent
