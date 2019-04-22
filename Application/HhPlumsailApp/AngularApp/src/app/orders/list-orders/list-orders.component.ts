@@ -15,6 +15,10 @@ export class ListOrdersComponent implements OnInit {
 	constructor(private httpClientService: HttpClientService, private modalService: NgbModal) { }
 
 	ngOnInit() {
+		this.loadOrders();
+	}
+
+	loadOrders() {
 		this.httpClientService.getOrders()
 			.subscribe(result => {
 				this.orders = result;
@@ -25,10 +29,15 @@ export class ListOrdersComponent implements OnInit {
 		const config: NgbModalOptions = {
 			backdrop: 'static',
 			keyboard: false,
-			size: 'lg'
+			// size: 'lg'
 		}
 		const modalRef = this.modalService.open(EditOrderComponent, config);
 		modalRef.componentInstance.orderId = orderId;
+		modalRef.result.then((value) => {
+			if (!!value) {
+				this.loadOrders();
+			}
+		});
 	}
 
 }

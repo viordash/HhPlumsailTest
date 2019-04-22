@@ -45,13 +45,13 @@ export class EditOrderComponent implements OnInit {
 		if (this.isNew) {
 			this.httpClientService.createOrder(this.order)
 				.subscribe(result => {
-					this.activeModal.close();
+					this.activeModal.close(true);
 					this.router.navigate(['/orders'])
 				});
 		} else {
 			this.httpClientService.saveOrder(this.orderId, this.order)
 				.subscribe(result => {
-					this.activeModal.close();
+					this.activeModal.close(true);
 					this.router.navigate(['/orders'])
 				});
 		}
