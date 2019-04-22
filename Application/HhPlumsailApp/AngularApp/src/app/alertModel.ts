@@ -1,4 +1,4 @@
-interface Alert {
+interface AlertModel {
 	type: string;
 	message: string;
 }

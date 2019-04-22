@@ -1,17 +1,18 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
+
 @Injectable({
 	providedIn: 'root'
 })
 export class ToastNotificationService {
-	public showAlert$: EventEmitter<Alert>;
+	public showAlert$: EventEmitter<AlertModel>;
 
 	constructor() {
 		this.showAlert$ = new EventEmitter();
 	}
 
 	showError(message: string) {
-		const alert: Alert = {
+		const alert: AlertModel = {
 			type: 'danger',
 			message: message,
 		};

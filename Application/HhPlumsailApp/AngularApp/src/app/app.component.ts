@@ -9,7 +9,7 @@ import { ToastNotificationService } from './services/toast-notification.service'
 })
 
 export class AppComponent {
-	alert: Alert = null;
+	alert: AlertModel = null;
 
 	title = 'A programming task for candidates for developer JavaScript, C#';
 
@@ -18,7 +18,7 @@ export class AppComponent {
 		snotify.showAlert$.subscribe(alert => this.showAlert(alert));
 	}
 
-	showAlert(alert: Alert) {
+	showAlert(alert: AlertModel) {
 		this.alert = alert;
 	}
 
