@@ -17,7 +17,7 @@ export class EditOrderComponent implements OnInit {
 	customers: CustomerModel[];
 
 	private get isNew(): boolean {
-		return !!!this.orderId;
+		return this.orderId == null;
 	}
 	get title(): string {
 		return this.isNew ? "Create new order" : "Edit order"
