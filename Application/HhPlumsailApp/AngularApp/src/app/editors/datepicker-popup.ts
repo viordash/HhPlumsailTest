@@ -16,14 +16,14 @@ export class NgbdDatepickerPopup {
     }
 
     @Output() selectedDateChange = new EventEmitter<Date>();
-    onSelectedDateChange(model: NgbDate) {
-        if (!(model && model.year && model.month && model.day)) {
+    onSelectedDateChange(model: any) {
+        if (!!!model || !!!model.valid) {
             return;
         }
-        this.ngbDate = model;
-        this.date.setFullYear(model.year);
-        this.date.setMonth(model.month - 1);
-        this.date.setDate(model.day);
+        this.ngbDate = model.value;
+        this.date.setFullYear(model.value.year);
+        this.date.setMonth(model.value.month - 1);
+        this.date.setDate(model.value.day);
         this.selectedDateChange.emit(this.date);
     }
 }
