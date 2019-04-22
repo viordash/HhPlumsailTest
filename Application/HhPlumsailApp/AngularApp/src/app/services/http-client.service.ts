@@ -11,8 +11,7 @@ import { ErrorHandlerService } from './error-handler.service';
 export class HttpClientService {
 
 	constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string,
-		private errorHandlerService: ErrorHandlerService) { }
-
+		private errorHandler: ErrorHandlerService) { }
 
 	public getOrders(): Observable<OrderModel[]> {
 		var subject = new Subject<OrderModel[]>()
@@ -20,7 +19,7 @@ export class HttpClientService {
 			.subscribe(result => {
 				subject.next(result);
 			}, error => {
-				console.error(error);
+				this.errorHandler.show(error);
 			});
 		return subject.asObservable();
 	}
@@ -31,7 +30,7 @@ export class HttpClientService {
 			.subscribe(result => {
 				subject.next(result);
 			}, error => {
-				console.error(error);
+				this.errorHandler.show(error);
 			});
 		return subject.asObservable();
 	}
@@ -42,7 +41,7 @@ export class HttpClientService {
 			.subscribe(result => {
 				subject.next(result);
 			}, error => {
-				console.error(error);
+				this.errorHandler.show(error);
 			});
 		return subject.asObservable();
 	}
@@ -53,7 +52,7 @@ export class HttpClientService {
 			.subscribe(result => {
 				subject.next(result);
 			}, error => {
-				console.error(error);
+				this.errorHandler.show(error);
 			});
 		return subject.asObservable();
 	}
@@ -65,7 +64,7 @@ export class HttpClientService {
 			.subscribe(result => {
 				subject.next(result);
 			}, error => {
-				console.error(error);
+				this.errorHandler.show(error);
 			});
 		return subject.asObservable();
 	}
