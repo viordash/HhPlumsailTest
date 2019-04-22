@@ -3,8 +3,9 @@
   <div class="col-xs-8">
     <div class="form-group">
       <label>Date</label>
-      <input class="form-control" name="date" [(ngModel)]="order.date" />
+      <ngbd-datepicker-popup [(selectedDate)]="order.date"></ngbd-datepicker-popup>
     </div>
+
     <div class="form-group">
       <label>Customer</label>
       <select class="form-control" name="customer" [(ngModel)]="order.customer">
@@ -30,7 +31,7 @@
       <input type="text" class="form-control" name="description" [(ngModel)]="order.description" />
     </div>
   </div>
-  <div class="form-group form-save-button" >
+  <div class="form-group form-save-button">
     <button [disabled]="orderForm.invalid" class="btn btn-default focus" (click)="saveOrder()">Save</button>
   </div>
 </form>

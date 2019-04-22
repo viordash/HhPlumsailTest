@@ -10,6 +10,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { EditOrderComponent } from './orders/edit-order/edit-order.component';
 import { HttpClientService } from './http-client.service';
 import { ListOrdersComponent } from './orders/list-orders/list-orders.component';
+import { NgbdDatepickerPopupModule } from './editors/datepicker-popup.module';
 
 @NgModule({
    declarations: [
@@ -23,7 +24,8 @@ import { ListOrdersComponent } from './orders/list-orders/list-orders.component'
       FormsModule,
       BrowserModule,
       AppRoutingModule,
-      HttpClientModule
+      HttpClientModule,
+      NgbdDatepickerPopupModule
    ],
    providers: [HttpClientService],
    bootstrap: [

@@ -1,6 +1,6 @@
 export interface OrderModel {
     id: number;
-    date: number;
+    date: Date;
     customer: string;
     status: object;
     prepaid: boolean;

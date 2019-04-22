@@ -13,7 +13,7 @@ namespace HhPlumsailApp.Services {
 			internalStorage = new List<OrderModel>() {
 				new OrderModel() {
 					Id = 19,
-					Date = DateTime.Now,
+					Date = new DateTime(2019, 04, 22),
 					Customer = "Customer1",
 					Status = OrderStatus.Created,
 					Prepaid = false,
@@ -22,7 +22,7 @@ namespace HhPlumsailApp.Services {
 				},
 				new OrderModel() {
 					Id = 42,
-					Date = DateTime.Now,
+					Date = new DateTime(2019, 04, 01),
 					Customer = "Customer2",
 					Status = OrderStatus.Created,
 					Prepaid = false,
