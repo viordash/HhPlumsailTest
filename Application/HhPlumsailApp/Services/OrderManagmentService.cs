@@ -8,6 +8,7 @@ using HhPlumsailApp.Models;
 namespace HhPlumsailApp.Services {
 	public class OrderManagmentService : IOrderManagmentService {
 		readonly List<OrderModel> internalStorage;
+		object lockObj = new object();
 
 		public OrderManagmentService() {
 			internalStorage = new List<OrderModel>() {
@@ -37,7 +38,7 @@ namespace HhPlumsailApp.Services {
 			if(internalStorage.Any(x => order.Equals(x))) {
 				throw new DuplicateRecordException();
 			}
-			internalStorage.Add(order);
+			AppendRecord(order);
 		}
 
 		public void Delete(int orderId) {
@@ -71,6 +72,13 @@ namespace HhPlumsailApp.Services {
 
 			if(exception.Data.Count > 0) {
 				throw exception;
+			}
+		}
+
+		void AppendRecord(OrderModel order) {
+			lock(lockObj) {
+				order.Id = internalStorage.Count();
+				internalStorage.Add(order);
 			}
 		}
 	}

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using HhPlumsailApp.Exceptions;
 using HhPlumsailApp.Models;
 using HhPlumsailApp.Services;
@@ -51,6 +52,19 @@ namespace HhPlumsailApp.Tests.Services {
 		public void Create_DuplicateOrder_ThrowsDuplicateRecordException() {
 			AddOrderToInternalStorage(order1);
 			Assert.Throws<DuplicateRecordException>(() => testable.Create(order1));
+		}
+
+		[Test]
+		public void Create_Id_Is_Unique_Test() {
+			for(int i = 0; i < 142; i++) {
+				testable.Create(new OrderModel() { Id = 0, Customer = string.Format("Customer{0}", i) });
+			}
+			var orders = testable.List();
+
+			foreach(var order in orders) {
+				var identicalOrders = orders.Where(x => x.Id == order.Id);
+				Assert.That(identicalOrders.Count(), Is.EqualTo(1));
+			}
 		}
 		#endregion
 
