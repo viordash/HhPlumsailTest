@@ -3,13 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { OrderModel } from '../orders/orderModel';
 import { Observable, Subject } from 'rxjs';
 import { CustomerModel } from '../customers/CustomerModel';
+import { ErrorHandlerService } from './error-handler.service';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class HttpClientService {
 
-	constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
+	constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string,
+		private errorHandlerService: ErrorHandlerService) { }
 
 
 	public getOrders(): Observable<OrderModel[]> {

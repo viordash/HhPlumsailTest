@@ -9,7 +9,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditOrderComponent } from './edit-order/edit-order.component';
 import { ListOrdersComponent } from './list-orders/list-orders.component';
 import { EditorsModule } from '../editors/editors.module';
-import { HttpClientService } from '../services/http-client.service';
 import { OrderStatusPipe } from '../pipes/order-status.pipe';
 
 
@@ -22,7 +21,6 @@ import { OrderStatusPipe } from '../pipes/order-status.pipe';
         EditorsModule,
         NgbModule
     ],
-    providers: [HttpClientService],
     declarations: [
         EditOrderComponent,
         ListOrdersComponent,
