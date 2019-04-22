@@ -12,7 +12,7 @@ namespace HhPlumsailApp.Services {
 		public OrderManagmentService() {
 			internalStorage = new List<OrderModel>() {
 				new OrderModel() {
-					Id = 19,
+					Id = 0,
 					Date = new DateTime(2019, 04, 22),
 					Customer = "Customer1",
 					Status = OrderStatus.Created,
@@ -21,7 +21,7 @@ namespace HhPlumsailApp.Services {
 					Description = "Description1"
 				},
 				new OrderModel() {
-					Id = 42,
+					Id = 1,
 					Date = new DateTime(2019, 04, 01),
 					Customer = "Customer2",
 					Status = OrderStatus.Created,
@@ -32,13 +32,12 @@ namespace HhPlumsailApp.Services {
 			};
 		}
 
-		public OrderModel Create(OrderModel order) {
+		public void Create(OrderModel order) {
 			AssertOrderModel(order);
-			if(internalStorage.Any(x => x.Id == order.Id)) {
+			if(internalStorage.Any(x => order.Equals(x))) {
 				throw new DuplicateRecordException();
 			}
 			internalStorage.Add(order);
-			return order;
 		}
 
 		public void Delete(int orderId) {
@@ -46,10 +45,10 @@ namespace HhPlumsailApp.Services {
 			internalStorage.Remove(order);
 		}
 
-		public OrderModel Edit(OrderModel order) {
+		public void Edit(OrderModel order) {
 			AssertOrderModel(order);
 			Delete(order.Id);
-			return Create(order);
+			internalStorage.Add(order);
 		}
 
 		public List<OrderModel> List() {

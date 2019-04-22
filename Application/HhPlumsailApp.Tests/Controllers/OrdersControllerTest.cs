@@ -74,14 +74,10 @@ namespace HhPlumsailApp.Tests.Controllers {
 		public void Post_ReturnSelectedOrder() {
 			orderManagmentServiceMock
 				.Setup(x => x.Create(It.Is<OrderModel>(order => order.Id == order1.Id)))
-				.Returns<OrderModel>((order) => {
-					return order;
-				})
 				.Verifiable();
 
 			testable.ModelState.Clear();
-			var result = testable.Post(order1);
-			Assert.That(result, Is.EqualTo(order1));
+			testable.Post(order1);
 			orderManagmentServiceMock.VerifyAll();
 		}
 
@@ -97,28 +93,20 @@ namespace HhPlumsailApp.Tests.Controllers {
 		public void Put_Test() {
 			orderManagmentServiceMock
 				.Setup(x => x.Edit(It.Is<OrderModel>(order => order.Id == order1.Id)))
-				.Returns<OrderModel>((order) => {
-					return order;
-				})
 				.Verifiable();
 
 			testable.ModelState.Clear();
-			var result = testable.Put(order1.Id, order1);
-			Assert.That(result, Is.EqualTo(order1));
+			testable.Put(order1.Id, order1);
 			orderManagmentServiceMock.VerifyAll();
 		}
 		[Test]
 		public void Put_Replace_Id_In_Model() {
 			orderManagmentServiceMock
 				.Setup(x => x.Edit(It.Is<OrderModel>(order => order.Id == 1234)))
-				.Returns<OrderModel>((order) => {
-					return order;
-				})
 				.Verifiable();
 
 			testable.ModelState.Clear();
-			var result = testable.Put(1234, new OrderModel() { Id = 0 });
-			Assert.That(result.Id, Is.EqualTo(1234));
+			testable.Put(1234, new OrderModel() { Id = 0 });
 			orderManagmentServiceMock.VerifyAll();
 		}
 

@@ -5,8 +5,8 @@ namespace HhPlumsailApp.Services {
 	public interface IOrderManagmentService {
 		List<OrderModel> List();
 		OrderModel Retrieve(int orderId);
-		OrderModel Create(OrderModel order);
-		OrderModel Edit(OrderModel order);
+		void Create(OrderModel order);
+		void Edit(OrderModel order);
 		void Delete(int orderId);
 	}
 }

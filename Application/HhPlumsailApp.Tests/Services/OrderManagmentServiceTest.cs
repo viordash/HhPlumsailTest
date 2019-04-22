@@ -38,8 +38,7 @@ namespace HhPlumsailApp.Tests.Services {
 		#region Create
 		[Test]
 		public void Create_ReturnsOrderModel() {
-			var result = testable.Create(order1);
-			Assert.That(result, Is.EqualTo(order1));
+			testable.Create(order1);
 			AssertInternalStorage(new List<OrderModel>() { order1 });
 		}
 
@@ -75,8 +74,7 @@ namespace HhPlumsailApp.Tests.Services {
 		public void Edit_ReturnsOrderModel() {
 			AddOrderToInternalStorage(order1);
 			var modifiedOrder = new OrderModel() { Id = order1.Id, Customer = order1.Customer + " edited" };
-			var result = testable.Edit(modifiedOrder);
-			Assert.That(result.Customer, Is.EqualTo(modifiedOrder.Customer));
+			testable.Edit(modifiedOrder);
 			AssertInternalStorage(new List<OrderModel>() { modifiedOrder });
 		}
 
@@ -98,7 +96,7 @@ namespace HhPlumsailApp.Tests.Services {
 			AddOrderToInternalStorage(order1);
 			AddOrderToInternalStorage(order2);
 			var orders = testable.List();
-			Assert.That(orders, Is.EquivalentTo(new List<OrderModel>() { order1, order2 }));
+			CollectionAssert.IsSubsetOf(new List<OrderModel>() { order1, order2 }, orders);
 		}
 		#endregion
 
@@ -114,11 +112,11 @@ namespace HhPlumsailApp.Tests.Services {
 
 		void AssertInternalStorage(IEnumerable equivalentToExpected) {
 			var orders = testable.List();
-			Assert.That(orders, Is.EquivalentTo(equivalentToExpected));
+			CollectionAssert.IsSubsetOf(equivalentToExpected, orders);
 		}
 
 		void AddOrderToInternalStorage(OrderModel orderModel) {
-			var result = testable.Create(orderModel);
+			testable.Create(orderModel);
 		}
 	}
 }

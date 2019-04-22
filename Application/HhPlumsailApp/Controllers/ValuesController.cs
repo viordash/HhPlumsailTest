@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Web.Http;
 
 namespace HhPlumsailApp.Controllers {
-	[Authorize]
+	//[Authorize]
 	public class ValuesController : ApiController {
 		// GET api/values
 		public IEnumerable<string> Get() {

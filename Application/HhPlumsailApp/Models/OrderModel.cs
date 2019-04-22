@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace HhPlumsailApp.Models {
@@ -20,5 +21,34 @@ namespace HhPlumsailApp.Models {
 
 		public string Description { get; set; }
 
+		public override bool Equals(object obj) {
+			if(ReferenceEquals(obj, null)) {
+				return false;
+			}
+
+			if(ReferenceEquals(this, obj)) {
+				return true;
+			}
+			if(!(obj is OrderModel otherOrderModel)) {
+				return false;
+			}
+			return Date == otherOrderModel.Date
+				&& Customer == otherOrderModel.Customer
+				&& Status == otherOrderModel.Status
+				&& Prepaid == otherOrderModel.Prepaid
+				&& Summ == otherOrderModel.Summ
+				&& Description == otherOrderModel.Description;
+		}
+
+		public override int GetHashCode() {
+			var hashCode = 1754935533;
+			hashCode = hashCode * -1521134295 + Date.GetHashCode();
+			hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Customer);
+			hashCode = hashCode * -1521134295 + Status.GetHashCode();
+			hashCode = hashCode * -1521134295 + Prepaid.GetHashCode();
+			hashCode = hashCode * -1521134295 + Summ.GetHashCode();
+			hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Description);
+			return hashCode;
+		}
 	}
 }

@@ -6,7 +6,7 @@ using HhPlumsailApp.Models;
 using HhPlumsailApp.Services;
 
 namespace HhPlumsailApp.Controllers {
-	[Authorize]
+	//[Authorize]
 	public class OrdersController : ApiController {
 		readonly IOrderManagmentService orderManagmentService;
 
@@ -26,16 +26,16 @@ namespace HhPlumsailApp.Controllers {
 		}
 
 		// POST api/Orders
-		public OrderModel Post([FromBody]OrderModel orderModel) {
+		public void Post([FromBody]OrderModel orderModel) {
 			ModelState.Validate();
-			return orderManagmentService.Create(orderModel);
+			orderManagmentService.Create(orderModel);
 		}
 
 		// PUT api/Orders/5
-		public OrderModel Put(int id, [FromBody]OrderModel orderModel) {
+		public void Put(int id, [FromBody]OrderModel orderModel) {
 			ModelState.Validate();
 			orderModel.Id = id;
-			return orderManagmentService.Edit(orderModel);
+			orderManagmentService.Edit(orderModel);
 		}
 
 		// DELETE api/Orders/5
