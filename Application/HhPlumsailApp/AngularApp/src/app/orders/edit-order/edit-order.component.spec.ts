@@ -6,8 +6,7 @@ import { DebugElement } from '@angular/core';
 import { EditOrderComponent } from './edit-order.component';
 import { HttpClientService } from 'src/app/services/http-client.service';
 import { MockHttpClientService } from 'src/app/services/mock-http-client.service';
-import { FormsModule } from '@angular/forms';
-import { NgbdDatepickerPopupModule } from 'src/app/editors/datepicker-popup.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModalModule, NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -20,10 +19,10 @@ describe('EditOrderComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        NgbdDatepickerPopupModule,
         NgbModalModule,
         RouterTestingModule,
-        NgbModule
+        NgbModule,
+        ReactiveFormsModule
       ],
       declarations: [EditOrderComponent],
       providers: [{ provide: HttpClientService, useClass: MockHttpClientService },
