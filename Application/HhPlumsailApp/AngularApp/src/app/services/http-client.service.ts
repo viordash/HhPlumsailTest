@@ -90,4 +90,15 @@ export class HttpClientService {
 			this.errorHandler.show(error);
 		});
 	}
+
+	public signUp(user: UserModel): Observable<any> {
+		var subject = new Subject<any>()
+		this.http.post<any>(this.baseUrl + '/api/account/register', user)
+			.subscribe(result => {
+				subject.next(result);
+			}, error => {
+				this.errorHandler.show(error);
+			});
+		return subject.asObservable();
+	}
 }

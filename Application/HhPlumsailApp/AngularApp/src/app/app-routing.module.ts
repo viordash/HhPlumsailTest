@@ -11,7 +11,7 @@ const routes: Routes = [
 	{ path: 'orders/order/:id', component: EditOrderComponent },
 	{ path: 'orders/order', component: EditOrderComponent },
 	{ path: 'orders', component: ListOrdersComponent },    
-	// { path: '**', redirectTo: '/orders'}
+	{ path: '**', redirectTo: '/orders'}
 ];
 
 @NgModule({
