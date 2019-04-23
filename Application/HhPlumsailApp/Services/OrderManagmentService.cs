@@ -25,7 +25,7 @@ namespace HhPlumsailApp.Services {
 					Id = 1,
 					Date = new DateTime(2019, 04, 01),
 					Customer = "Customer2",
-					Status = OrderStatus.Created,
+					Status = OrderStatus.InProcess,
 					Prepaid = false,
 					Summ = 19.42M,
 					Description = "Description2"

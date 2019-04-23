@@ -7,7 +7,7 @@ namespace HhPlumsailApp.Models {
 		[Required]
 		public int Id { get; set; }
 
-		[Range(typeof(DateTime), "1/1/2010", "1/1/2029", ErrorMessage = "Value for {0} must be between {1} and {2}")]
+		[Required]
 		public DateTime Date { get; set; }
 
 		[Required]
