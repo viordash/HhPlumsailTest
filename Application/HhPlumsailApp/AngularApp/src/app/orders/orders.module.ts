@@ -9,7 +9,6 @@ import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 
 import { EditOrderComponent } from './edit-order/edit-order.component';
 import { ListOrdersComponent } from './list-orders/list-orders.component';
-import { EditorsModule } from '../editors/editors.module';
 import { OrderStatusPipe } from '../pipes/order-status.pipe';
 
 
@@ -19,7 +18,6 @@ import { OrderStatusPipe } from '../pipes/order-status.pipe';
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        EditorsModule,
         NgBootstrapFormValidationModule,
         ReactiveFormsModule,
         NgbModule,
