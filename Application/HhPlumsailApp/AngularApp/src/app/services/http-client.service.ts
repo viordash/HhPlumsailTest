@@ -1,9 +1,12 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { OrderModel } from '../orders/orderModel';
 import { Observable, Subject } from 'rxjs';
 import { CustomerModel } from '../customers/CustomerModel';
 import { ErrorHandlerService } from './error-handler.service';
+import { UserModel } from '../authentification/userModel';
+import { AuthentificationService } from './authentification.service';
+import { AuthTokenModel } from '../authentification/authTokenModel';
 
 @Injectable({
 	providedIn: 'root'
@@ -11,7 +14,7 @@ import { ErrorHandlerService } from './error-handler.service';
 export class HttpClientService {
 
 	constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string,
-		private errorHandler: ErrorHandlerService) { }
+		private errorHandler: ErrorHandlerService, private authentification: AuthentificationService, ) { }
 
 	public getOrders(): Observable<OrderModel[]> {
 		var subject = new Subject<OrderModel[]>()
@@ -67,5 +70,24 @@ export class HttpClientService {
 				this.errorHandler.show(error);
 			});
 		return subject.asObservable();
+	}
+
+	public login(user: UserModel): void {
+		const body = new HttpParams()
+			.set('grant_type', 'password')
+			.set('UserName', user.userName)
+			.set('Password', user.password);
+
+		this.http.post(this.baseUrl + 'token',
+			body.toString(),
+			{
+				headers: new HttpHeaders()
+					.set('Content-Type', 'application/x-www-form-urlencoded')
+			}
+		).subscribe(result => {
+			this.authentification.acceptToken(result as AuthTokenModel);
+		}, error => {
+			this.errorHandler.show(error);
+		});
 	}
 }

@@ -12,6 +12,7 @@ import { HttpClientService } from './services/http-client.service';
 import { ErrorHandlerService } from './services/error-handler.service';
 import { ToastNotificationService } from './services/toast-notification.service';
 import { AuthentificationModule } from './authentification/authentification.module';
+import { AuthentificationService } from './services/authentification.service';
 
 @NgModule({
    declarations: [
@@ -30,6 +31,6 @@ import { AuthentificationModule } from './authentification/authentification.modu
    bootstrap: [
       AppComponent
    ],
-   providers: [HttpClientService, ErrorHandlerService, ToastNotificationService],
+   providers: [HttpClientService, ErrorHandlerService, ToastNotificationService, AuthentificationService],
 })
 export class AppModule { }

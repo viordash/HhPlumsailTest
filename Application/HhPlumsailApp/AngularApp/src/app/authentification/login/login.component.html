@@ -1,3 +1,35 @@
-<p>
-  login works!
-</p>
+<!-- <form role="form">
+  <div class="row">
+    <div class="col-md-4">
+      <h2 class="form-login-heading">Login</h2>
+      <input type="text" class="form-control" placeholder="Username" data-ng-model="loginData.userName" required
+        autofocus>
+      <input type="password" class="form-control" placeholder="Password" data-ng-model="loginData.password" required>
+
+      <button class="btn btn-md btn-info btn-block" type="submit" data-ng-click="login()">Login</button>
+
+    </div>
+  </div>
+</form> -->
+
+
+<form class="ng-pristine ng-untouched ng-valid" [formGroup]="formGroup" (validSubmit)="login()">
+  <div class="row">
+
+    <div class="col-md-4">
+      <h2 class="form-login-heading">Login</h2>
+
+
+      <div class="form-group">
+        <input type="text" class="form-control" formControlName="userName" placeholder="Username" autofocus/>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" formControlName="password" placeholder="Password" />
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline-primary" type="submit">Save</button>
+      </div>
+    </div>
+  </div>
+</form>
