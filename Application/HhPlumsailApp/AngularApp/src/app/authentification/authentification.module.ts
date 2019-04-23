@@ -7,7 +7,6 @@ import { AppRoutingModule } from '../app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 
-import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 
 
@@ -22,12 +21,9 @@ import { LoginComponent } from './login/login.component';
 		NgbModule,
 	],
 	declarations: [
-		SignupComponent,
 		LoginComponent],
 	exports: [
-		SignupComponent,
 		LoginComponent
 	],
-	bootstrap: [SignupComponent]
 })
 export class AuthentificationModule { }

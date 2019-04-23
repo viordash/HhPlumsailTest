@@ -2,8 +2,54 @@
   <h4 class="modal-title">{{title}}</h4>
 </div>
 <div class="login-modal">
+
+  <ngb-tabset #tabs>
+    <ngb-tab title="Login" id="login">
+      <ng-template ngbTabContent>
+        <form class="ng-pristine ng-untouched ng-valid" [formGroup]="formGroup" (validSubmit)="login()">
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName="userName" placeholder="Username" autofocus />
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" formControlName="password" placeholder="Password" />
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-outline-primary" type="submit">Login</button>
+          </div>
+        </form>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab title="Sign Up" id="signup">
+      <ng-template ngbTabContent>
+        <form class="ng-pristine ng-untouched ng-valid" [formGroup]="formGroup" (validSubmit)="signup()">
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName="userName" placeholder="Username" autofocus />
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" formControlName="password" placeholder="Password" />
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" formControlName="confirmPassword"
+              placeholder="Confirm Password" />
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-outline-primary" type="submit">Submit</button>
+          </div>
+        </form>
+
+      </ng-template>
+    </ngb-tab>
+
+  </ngb-tabset>
+
+
+
+
   <!-- <div class="row"> -->
-  <div class="col-md-12">
+  <!-- <div class="col-md-12">
     <form class="ng-pristine ng-untouched ng-valid" [formGroup]="formGroup" (validSubmit)="login()">
 
       <h2 class="form-login-heading">Login</h2>
@@ -20,7 +66,7 @@
         <button class="btn btn-outline-primary" type="submit">Login</button>
       </div>
     </form>
-  </div>
+  </div> -->
   <!-- </div> -->
 
   <!-- <div class="col-md-1">
