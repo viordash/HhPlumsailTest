@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { ToastNotificationService } from './toast-notification.service';
 import { Router } from '@angular/router';
 
@@ -6,7 +6,11 @@ import { Router } from '@angular/router';
 	providedIn: 'root'
 })
 export class ErrorHandlerService {
-	constructor(public snotify: ToastNotificationService, private router: Router) { }
+	public showLogin$: EventEmitter<string>;
+
+	constructor(public snotify: ToastNotificationService, private router: Router) {
+		this.showLogin$ = new EventEmitter();
+	}
 
 	private tryParseErroObject(errorObj: any): string {
 		if (typeof errorObj === "string") {
@@ -23,8 +27,9 @@ export class ErrorHandlerService {
 
 	private tryParseError(error: any): any {
 		try {
-			if (!!error.status && error.status == 401) {
-				this.router.navigate(['/login'])
+			if (!!error.status && error.status == 401) {				
+				this.showLogin$.emit(this.router.url);
+				// this.router.navigate(['/login'])
 				return null;
 			} else
 				if (!!error.error && !!error.error.message) {

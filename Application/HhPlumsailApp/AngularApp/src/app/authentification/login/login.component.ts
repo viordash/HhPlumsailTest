@@ -1,27 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { UserModel } from '../userModel';
 import { HttpClientService } from 'src/app/services/http-client.service';
-import { Router } from '@angular/router';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  @Input() returnUrl: string;
+
   formGroup: FormGroup;
   user: Observable<UserModel>;
 
-  constructor(private httpClientService: HttpClientService, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private httpClientService: HttpClientService, private formBuilder: FormBuilder, public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
       userName: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(4)]],
+      password: ['', Validators.required],
     });
-
   }
 
   login() {
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
       }
       this.httpClientService.login(user)
         .subscribe(result => {
-          this.router.navigate(['/'])
+          this.activeModal.close(true);
         });
 
     }
