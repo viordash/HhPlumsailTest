@@ -32,4 +32,17 @@ export class AuthentificationService {
 		// }
 		// return token;
 	}
+
+	public logout() {
+		this.authToken = null;
+		window.location.reload();
+	}
+
+
+	public getUserName(): string {
+		if (!!!this.authToken) {
+			return null;
+		}
+		return this.authToken.userName;
+	}
 }
