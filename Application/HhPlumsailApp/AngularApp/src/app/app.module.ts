@@ -6,17 +6,16 @@ import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SignupComponent } from './signup/signup.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { OrdersModule } from './orders/orders.module';
 import { HttpClientService } from './services/http-client.service';
 import { ErrorHandlerService } from './services/error-handler.service';
 import { ToastNotificationService } from './services/toast-notification.service';
+import { AuthentificationModule } from './authentification/authentification.module';
 
 @NgModule({
    declarations: [
       AppComponent,
-      SignupComponent,
       NavMenuComponent,
    ],
    imports: [
@@ -25,7 +24,8 @@ import { ToastNotificationService } from './services/toast-notification.service'
       AppRoutingModule,
       NgbModule,
       OrdersModule,
-      NgBootstrapFormValidationModule.forRoot()
+      NgBootstrapFormValidationModule.forRoot(),
+      AuthentificationModule
    ],
    bootstrap: [
       AppComponent

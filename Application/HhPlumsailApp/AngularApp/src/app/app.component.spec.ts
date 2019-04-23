@@ -5,9 +5,8 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HttpClientService } from './services/http-client.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OrdersModule } from './orders/orders.module';
-import { SignupComponent } from './signup/signup.component';
+import { SignupComponent } from './authentification/signup/signup.component';
 import { FormsModule } from '@angular/forms';
-import { EditorsModule } from './editors/editors.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -16,8 +15,7 @@ describe('AppComponent', () => {
         RouterTestingModule,
         FormsModule,
         NgbModule,
-        OrdersModule,
-        EditorsModule
+        OrdersModule
       ],
       declarations: [
         AppComponent,

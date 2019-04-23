@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SignupComponent } from './signup/signup.component';
+import { SignupComponent } from './authentification/signup/signup.component';
 import { EditOrderComponent } from './orders/edit-order/edit-order.component';
 import { ListOrdersComponent } from './orders/list-orders/list-orders.component';
+import { LoginComponent } from './authentification/login/login.component';
 
 const routes: Routes = [
 	{ path: 'signup', component: SignupComponent },
+	{ path: 'login', component: LoginComponent },
 	{ path: 'orders/order/:id', component: EditOrderComponent },
 	{ path: 'orders/order', component: EditOrderComponent },
 	{ path: 'orders', component: ListOrdersComponent },    
-	{ path: '**', redirectTo: '/orders'}
+	// { path: '**', redirectTo: '/orders'}
 ];
 
 @NgModule({
