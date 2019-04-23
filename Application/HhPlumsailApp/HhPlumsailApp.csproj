@@ -201,9 +201,6 @@
     <Compile Include="PerRequestLifetimeManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
-    <Compile Include="Results\ChallengeResult.cs" />
-    <Compile Include="Services\AuthorizationService.cs" />
-    <Compile Include="Services\IAuthorizationService.cs" />
     <Compile Include="Services\ICustomerManagmentService.cs" />
     <Compile Include="Services\IOrderManagmentService.cs" />
     <Compile Include="Services\IUserManagerService.cs" />
