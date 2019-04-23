@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ToastNotificationService } from './toast-notification.service';
+import { Router } from '@angular/router';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class ErrorHandlerService {
-	constructor(public snotify: ToastNotificationService) { }
+	constructor(public snotify: ToastNotificationService, private router: Router) { }
 
 	private tryParseErroObject(errorObj: any): string {
 		if (typeof errorObj === "string") {
@@ -22,13 +23,17 @@ export class ErrorHandlerService {
 
 	private tryParseError(error: any): any {
 		try {
-			if (!!error.error && !!error.error.message) {
-				return error.error.message;
-			} else if (!!error.error && !!error.error.error) {
-				return this.tryParseErroObject(error.error.error);
-			} else if (!!error.message) {
-				return error.message;
-			}
+			if (!!error.status && error.status == 401) {
+				this.router.navigate(['/login'])
+				return null;
+			} else
+				if (!!error.error && !!error.error.message) {
+					return error.error.message;
+				} else if (!!error.error && !!error.error.error) {
+					return this.tryParseErroObject(error.error.error);
+				} else if (!!error.message) {
+					return error.message;
+				}
 			return error;
 		} catch (ex) {
 			return error.toString();
@@ -37,6 +42,8 @@ export class ErrorHandlerService {
 
 	show(error: any): void {
 		const parsedError = this.tryParseError(error);
-		this.snotify.showError(parsedError);
+		if (!!parsedError) {
+			this.snotify.showError(parsedError);
+		}
 	}
 }

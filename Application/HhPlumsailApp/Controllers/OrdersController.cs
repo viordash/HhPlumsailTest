@@ -6,7 +6,7 @@ using HhPlumsailApp.Models;
 using HhPlumsailApp.Services;
 
 namespace HhPlumsailApp.Controllers {
-	//[Authorize]
+	[Authorize]
 	public class OrdersController : ApiController {
 		readonly IOrderManagmentService orderManagmentService;
 

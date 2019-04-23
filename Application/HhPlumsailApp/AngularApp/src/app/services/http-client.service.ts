@@ -18,7 +18,10 @@ export class HttpClientService {
 
 	public getOrders(): Observable<OrderModel[]> {
 		var subject = new Subject<OrderModel[]>()
-		this.http.get<OrderModel[]>(this.baseUrl + 'api/Orders')
+		this.http.get<OrderModel[]>(this.baseUrl + 'api/Orders',
+			{
+				headers: this.getAuthHeader()
+			})
 			.subscribe(result => {
 				subject.next(result);
 			}, error => {
@@ -29,7 +32,10 @@ export class HttpClientService {
 
 	public getOrder(orderId: number): Observable<OrderModel> {
 		var subject = new Subject<OrderModel>()
-		this.http.get<OrderModel>(this.baseUrl + 'api/Orders/' + orderId)
+		this.http.get<OrderModel>(this.baseUrl + 'api/Orders/' + orderId,
+			{
+				headers: this.getAuthHeader()
+			})
 			.subscribe(result => {
 				subject.next(result);
 			}, error => {
@@ -40,7 +46,10 @@ export class HttpClientService {
 
 	public createOrder(order: OrderModel): Observable<OrderModel> {
 		var subject = new Subject<OrderModel>()
-		this.http.post<OrderModel>(this.baseUrl + 'api/Orders', order)
+		this.http.post<OrderModel>(this.baseUrl + 'api/Orders', order,
+			{
+				headers: this.getAuthHeader()
+			})
 			.subscribe(result => {
 				subject.next(result);
 			}, error => {
@@ -51,7 +60,10 @@ export class HttpClientService {
 
 	public saveOrder(orderId: number, order: OrderModel): Observable<OrderModel> {
 		var subject = new Subject<OrderModel>()
-		this.http.put<OrderModel>(this.baseUrl + 'api/Orders/' + orderId, order)
+		this.http.put<OrderModel>(this.baseUrl + 'api/Orders/' + orderId, order,
+			{
+				headers: this.getAuthHeader()
+			})
 			.subscribe(result => {
 				subject.next(result);
 			}, error => {
@@ -63,7 +75,10 @@ export class HttpClientService {
 
 	public getCustomers(): Observable<CustomerModel[]> {
 		var subject = new Subject<CustomerModel[]>()
-		this.http.get<CustomerModel[]>(this.baseUrl + 'api/Customers')
+		this.http.get<CustomerModel[]>(this.baseUrl + 'api/Customers',
+			{
+				headers: this.getAuthHeader()
+			})
 			.subscribe(result => {
 				subject.next(result);
 			}, error => {
@@ -72,7 +87,8 @@ export class HttpClientService {
 		return subject.asObservable();
 	}
 
-	public login(user: UserModel): void {
+	public login(user: UserModel): Observable<any> {
+		var subject = new Subject<any>()
 		const body = new HttpParams()
 			.set('grant_type', 'password')
 			.set('UserName', user.userName)
@@ -86,9 +102,11 @@ export class HttpClientService {
 			}
 		).subscribe(result => {
 			this.authentification.acceptToken(result as AuthTokenModel);
+			subject.next(result);
 		}, error => {
 			this.errorHandler.show(error);
 		});
+		return subject.asObservable();
 	}
 
 	public signUp(user: UserModel): Observable<any> {
@@ -100,5 +118,14 @@ export class HttpClientService {
 				this.errorHandler.show(error);
 			});
 		return subject.asObservable();
+	}
+
+	private getAuthHeader(): HttpHeaders {
+		const token = this.authentification.getToken();
+		if (!!!token) {
+			return null;
+		}
+		return new HttpHeaders()
+			.set('Authorization', 'Bearer ' + token.access_token);
 	}
 }

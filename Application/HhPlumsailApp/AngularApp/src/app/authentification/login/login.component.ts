@@ -32,7 +32,11 @@ export class LoginComponent implements OnInit {
         password: formValue.password,
         confirmPassword: null
       }
-      this.httpClientService.login(user);
+      this.httpClientService.login(user)
+        .subscribe(result => {
+          this.router.navigate(['/'])
+        });
+
     }
   }
 }
