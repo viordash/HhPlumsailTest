@@ -8,7 +8,8 @@ const routes: Routes = [
 	{ path: 'signup', component: SignupComponent },
 	{ path: 'orders/order/:id', component: EditOrderComponent },
 	{ path: 'orders/order', component: EditOrderComponent },
-	{ path: 'orders', component: ListOrdersComponent },
+	{ path: 'orders', component: ListOrdersComponent },    
+	{ path: '**', redirectTo: '/orders'}
 ];
 
 @NgModule({
