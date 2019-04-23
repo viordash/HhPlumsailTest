@@ -10,7 +10,7 @@ import { EditOrderComponent } from '../edit-order/edit-order.component';
 	styleUrls: ['./list-orders.component.scss']
 })
 export class ListOrdersComponent implements OnInit {
-	private orders: OrderModel[];
+	orders: OrderModel[];
 
 	constructor(private httpClientService: HttpClientService, private modalService: NgbModal) { }
 
