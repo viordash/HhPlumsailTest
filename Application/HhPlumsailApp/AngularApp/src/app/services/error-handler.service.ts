@@ -24,8 +24,10 @@ export class ErrorHandlerService {
 		try {
 			if (!!error.error && !!error.error.message) {
 				return error.error.message;
-			} else if (!!error.error && !!error.error.error) {
+			} else  if (!!error.error && !!error.error.error) {
 				return this.tryParseErroObject(error.error.error);
+			} else if (!!error.message) {
+				return error.message;
 			}
 			return error;
 		} catch (ex) {
