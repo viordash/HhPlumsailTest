@@ -29,13 +29,13 @@ export class EditOrderComponent implements OnInit {
 	}
 
 	constructor(private httpClientService: HttpClientService, public activeModal: NgbActiveModal, private router: Router,
-		private formBuilder: FormBuilder, ) {
+		private formBuilder: FormBuilder) {
 	}
 
 	ngOnInit() {
 		this.formGroup = this.formBuilder.group({
 			date: ['', Validators.required],
-			customer: ['', [Validators.required, Validators.minLength(4), , Validators.maxLength(16)]],
+			customer: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]],
 			status: ['', Validators.required],
 			prepaid: [],
 			summ: ['', Validators.required],
@@ -85,8 +85,8 @@ export class EditOrderComponent implements OnInit {
 			prepaid: !!formValue.prepaid,
 			summ: formValue.summ,
 			description: formValue.description
-
 		}
+
 		if (this.isNew) {
 			this.httpClientService.createOrder(order)
 				.subscribe(result => {
