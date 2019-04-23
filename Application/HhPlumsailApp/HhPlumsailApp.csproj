@@ -182,7 +182,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DataAccess\DbContextFactory.cs" />
     <Compile Include="DataAccess\IDbContextFactory.cs" />
     <Compile Include="ErrorsHandling\ExceptionHandler.cs" />
