@@ -1,10 +1,11 @@
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from '../app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 
 import { EditOrderComponent } from './edit-order/edit-order.component';
 import { ListOrdersComponent } from './list-orders/list-orders.component';
@@ -19,7 +20,9 @@ import { OrderStatusPipe } from '../pipes/order-status.pipe';
         AppRoutingModule,
         HttpClientModule,
         EditorsModule,
-        NgbModule
+        NgBootstrapFormValidationModule,
+        ReactiveFormsModule,
+        NgbModule,
     ],
     declarations: [
         EditOrderComponent,
@@ -28,6 +31,7 @@ import { OrderStatusPipe } from '../pipes/order-status.pipe';
     exports: [
         EditOrderComponent,
         ListOrdersComponent
-    ]
+    ],
+    bootstrap: [EditOrderComponent]
 })
 export class OrdersModule { }
