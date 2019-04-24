@@ -212,7 +212,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AngularApp\dist\index.html" />
-    <Content Include="favicon.ico" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
