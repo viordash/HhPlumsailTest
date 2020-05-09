@@ -4,6 +4,7 @@ import { NgbModalOptions, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './authentification/login/login.component';
 import { ErrorHandlerService } from './services/error-handler.service';
 import { Router } from '@angular/router';
+import { AlertModel } from './alertModel';
 
 
 @Component({

@@ -1,4 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
+import { AlertModel } from '../alertModel';
 
 
 @Injectable({
